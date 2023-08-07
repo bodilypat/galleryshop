@@ -1,0 +1,9 @@
+Download zip file
+extract file to gallery 
+past root directory
+open PHPMyAdmin (http://localhost/phpmyadmin)
+create database gallery (import gallery.sql)
+run script http://localhost/galleryshop
+section admin
+username : 
+password: 

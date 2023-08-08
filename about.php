@@ -2,7 +2,7 @@
 session_start();
 error_reporting(0);
 
-include('includes/dbconnection.php');
+include('includes/dbconnect.php');
 ?>
 <!DOCTYPE html>
 <html lang="zxx">

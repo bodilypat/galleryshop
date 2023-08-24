@@ -13,26 +13,15 @@
 
 <head>
   
-  <title>Shop Gallery Management System - Admin Dashboard</title>
+  <title>Gallery Shop Management - Admin Dashboard</title>
 
-  <!-- Bootstrap CSS -->
-  
-  <!-- bootstrap theme -->
   <link href="css/bootstrap-theme.css" rel="stylesheet">
-  <!--external css-->
-  <!-- font icon -->
   <link href="css/elegant-icons-style.css" rel="stylesheet" />
-  
-  <!-- full calendar css-->
   <link href="css/bootstrap-fullcalendar.css" rel="stylesheet" />
   <link href="css/fullcalendar.css" rel="stylesheet" />
-  <!-- easy pie chart-->
   <link href="css/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen" />
-  <!-- owl carousel -->
   <link href="css/owl.carousel.css" rel="stylesheet"  type="text/css">
   <link href="css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
-  <!-- Custom styles -->
- 
   <link href="css/widgets.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet" />
@@ -42,174 +31,122 @@
 </head>
 
 <body>
-	  <!-- container section start -->
-	  <section id="container" class="">
-
-
-			 <?php include_once('includes/header.php');?>
-				<!--header end-->
-
-			<!--sidebar start-->
-			<?php include_once('includes/sidebar.php');?>
-			<!--sidebar end-->
-
-			<!--main content start-->
-			<section id="main-content">
-					  <section class="wrapper">
+	 
+	<section id="container" class="">
+		<?php include_once('includes/header.php');?>						
+		<?php include_once('includes/sidebar.php');?>			
+		<section id="main-content">
+			<section class="wrapper">
 						<!--overview start-->
-						<div class="row">
-							  <div class="col-lg-12">
-								<h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
-										<ol class="breadcrumb">
-										  <li><i class="fa fa-home"></i><a href="dashboard.php">Home</a></li>
-										  <li><i class="fa fa-laptop"></i>Dashboard</li>
-										</ol>
-							  </div>
-						</div>
-
-						<div class="row">
-								  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-											<div class="info-box green-bg">
-												  <?php $query=mysqli_query($con,"Select * from tblartist");
-														$artcount=mysqli_num_rows($query);
-												  ?>
-												<i class="fa fa-user"></i>
-												<div class="count"><?php echo $artcount;?></div>
-												<div class="title"> <a class="dropdown-item" href="manageArtist.php">Total Artist</a></div>
-											</div>
-									<!--/.info-box-->
-								  </div>
-								 <!--/.col-->
-
-								   <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-											<div class="info-box brown-bg">
-												<?php $query1=mysqli_query($con,"Select * from tblenquiry where Status='' || Status is null");
-													  $uenqcount=mysqli_num_rows($query1);
-												?>
-												<i class="fa fa-file"></i>
-												<div class="count"><?php echo $uenqcount;?></div>
-												<div class="title"> <a class="dropdown-item" href="unanswerInquiry.php">Total Unanswer Enquiry</a></div>
-											</div>
-											<!--/.info-box-->
+				<div class="row">
+					<div class="col-lg-12">
+						<h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
+							<ol class="breadcrumb">
+								<li><i class="fa fa-home"></i><a href="dashboard.php">Home</a></li>
+							    <li><i class="fa fa-laptop"></i>Dashboard</li>
+							</ol>
+			    	</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+						<div class="info-box green-bg">
+					        <?php $qArtist=mysqli_query($con,"SELECT * FROM tblartist");
+								  $artNum=mysqli_num_rows($qArtist);
+							  ?>
+									<i class="fa fa-user"></i>
+							   		<div class="count"><?php echo $artNum;?></div>
+									<div class="title"> 
+										<a class="dropdown-item" href="handleArtist.php">Total Artist</a>
 									</div>
-									<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-											<div class="info-box brown-bg">
-													 <?php $query1=mysqli_query($con,"Select * from tblenquiry where Status='Answer'");
-														   $aenqcount=mysqli_num_rows($query1);
-													 ?>
-													<i class="fa fa-file"></i>
-													<div class="count"><?php echo $aenqcount;?></div>
-													<div class="title"> <a class="dropdown-item" href="answerInquiry.php">Total Answer Enquiry</a></div>
-											</div>
-											<!--/.info-box-->
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+						<div class="info-box brown-bg">
+							<?php $qUnq=mysqli_query($con,"SELECT * FROM tblenquiry WHERE Status='' || Status is null");
+								  $unqNum=mysqli_num_rows($qUnq);
+								?>
+									<i class="fa fa-file"></i>
+									<div class="count"><?php echo $enqNum;?></div>
+									<div class="title"> 
+										<a class="dropdown-item" href="unanswerInquiry.php">Total Unanswer Enquiry</a>
 									</div>
-								  <!--/.col-->     
-								  <!--/.col-->       
 						</div>
-						<div class="row">
-							 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-									<div class="info-box dark-bg">
-										<?php $query2=mysqli_query($con,"Select * from tblarttype");
-											  $artcount=mysqli_num_rows($query2);
-										?>
-										<i class="fa fa-file"></i>
-										<div class="count"><?php echo $artcount;?></div>
-										<div class="title"> <a class="dropdown-item" href="manageType.php">Total Art Type</a></div>
-							</div>
-							<!--/.info-box-->
-						  </div>
-						  <!--/.col-->
-
-						  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-								<div class="info-box brown-bg">
-									 <?php $query1=mysqli_query($con,"Select * from tblartmedium");
-										   $amcount=mysqli_num_rows($query1);
-									 ?>
-									 <i class="fa fa-file"></i>
-									 <div class="count"><?php echo $amcount;?></div>
-									 <div class="title"> <a class="dropdown-item" href="manageMedium.php">Total Art Medium</a></div>
-								</div>
-								<!--/.info-box-->
-						</div>
-						  <!--/.col-->
+					</div>
 						<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-								  <div class="info-box dark-bg">
-								  <?php $query2=mysqli_query($con,"Select * from tblartproduct");
-										$apcount=mysqli_num_rows($query2);
-								   ?>
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								   
-								  <i class="fa fa-file"></i>
-								  <div class="count"><?php echo $apcount;?></div>
-								 <div class="title"> <a class="dropdown-item" href="manageProduct.php">Total Art Product</a></div>
-								</div>
-								<!--/.info-box-->
-						</div>
-						  <!--/.col-->     
-						</div>
-						<!--/.row-->					
-						<?php include_once('includes/footer.php');?>
-					  </section>		 
-			</section>
+							<div class="info-box brown-bg">
+					    		 <?php $qInq=mysqli_query($con,"SELECT * FROM tblenquiry WHERE Status='Answer'");
+								       $inqNum=mysqli_num_rows($qInq);
+					    	     ?>
+										<i class="fa fa-file"></i>
+										<div class="count"><?php echo $inqNum;?></div>
+										<div class="title"> 
+											<a class="dropdown-item" href="answerInquiry.php">Total Answer Enquiry</a>
+										</div>
+							</div>
+						</div>					    					       
+					</div>
+					<div class="row">
+						 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+							<div class="info-box dark-bg">
+								<?php $qAtt=mysqli_query($con,"SELECT * FROM tblarttype");
+									  $attNum=mysqli_num_rows($qAtt);
+								?>
+									<i class="fa fa-file"></i>
+										<div class="count"><?php echo $attNum;?></div>
+										<div class="title"> 
+											<a class="dropdown-item" href="handleArttype.php">Total Art Type</a>
+										</div>
+							</div>							
+					    </div>
+						<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+						     <div class="info-box brown-bg">
+						    	 <?php $qArtm=mysqli_query($con,"SELECT * FROM tblartmedium");
+									   $artmNum=mysqli_num_rows($qArtm);
+								 ?>
+								 <i class="fa fa-file"></i>
+								 <div class="count"><?php echo $artmNum;?></div>
+								 <div class="title"> 
+						    		  <a class="dropdown-item" href="handleArtMedium.php">Total Art Medium</a>
+									 </div>
+								</div>							
+							</div>
+						<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+							<div class="info-box dark-bg">
+								 <?php $qProd=mysqli_query($con,"SELECT * FROM tblartproduct");
+							    	   $prodNum=mysqli_num_rows($qProd);
+							 	 ?> 
+								    <i class="fa fa-file"></i>
+								    <div class="count"><?php echo $prodNum;?></div>
+							        <div class="title"> 
+										<a class="dropdown-item" href="handleProduct.php">Total Art Product</a>
+									</div>
+							</div>								
+						</div>						       
+					</div>											
+				<?php include_once('includes/footer.php');?>
+	 		</section>		 
+		</section>
 			<!--main content end-->
-	   </section>
-	   <!-- container section start -->
-
-  <!-- javascripts -->
-  <script src="js/jquery.js"></script>
-  <script src="js/jquery-ui-1.10.4.min.js"></script>
-  <script src="js/jquery-1.8.3.min.js"></script>
-  <script src="js/jquery-ui-1.9.2.custom.min.js" type="text/javascript" ></script>
-  <!-- bootstrap -->
-  <script src="js/bootstrap.min.js"></script>
-  <!-- nice scroll -->
-  <script src="js/jquery.scrollTo.min.js"></script>
-  <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-  <!-- charts scripts -->
-  <script src="js/jquery.knob.js"></script>
-  <script src="js/jquery.sparkline.js" type="text/javascript"></script>
-  <script src="js/jquery.easy-pie-chart.js"></script>
-  <script src="js/owl.carousel.js"></script>
-  <!-- jQuery full calendar -->
-  <<script src="js/fullcalendar.min.js"></script>
-    <!-- Full Google Calendar - Calendar -->
+   </section>
+	  
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-ui-1.10.4.min.js"></script>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery-ui-1.9.2.custom.min.js" type="text/javascript" ></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.scrollTo.min.js"></script>
+    <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="js/jquery.knob.js"></script>
+    <script src="js/jquery.sparkline.js" type="text/javascript"></script>
+    <script src="js/jquery.easy-pie-chart.js"></script>
+    <script src="js/owl.carousel.js"></script>
+    <script src="js/fullcalendar.min.js"></script>
     <script src="assets/fullcalendar.js"></script>
-    <!--script for this page only-->
     <script src="js/calendar-custom.js"></script>
     <script src="js/jquery.rateit.min.js"></script>
-    <!-- custom select -->
     <script src="js/jquery.customSelect.min.js"></script>
     <script src="js/Chart.js"></script>
-
-    <!--custome script for all page-->
     <script src="js/scripts.js"></script>
-    <!-- custom script for this page-->
     <script src="js/sparkline-chart.js"></script>
     <script src="js/easy-pie-chart.js"></script>
     <script src="js/jquery-jvectormap-1.2.2.min.js"></script>

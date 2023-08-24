@@ -1,11 +1,11 @@
 <?php
-session_start();
-error_reporting(0);
-include('includes/dbconnection.php');
-if (strlen($_SESSION['agmsaid']==0)) {
-  header('location:logout.php');
-  }
-  else{
+	session_start();
+	error_reporting(0);
+	include('includes/dbconnection.php');
+	if (strlen($_SESSION['agmsaid']==0)) {
+  		header('location:logout.php');
+ 		 }
+  		 else{
 
 if(isset($_POST['submit']))
   {
@@ -36,11 +36,11 @@ $allowed_extensions = array(".jpg","jpeg",".png",".gif");
 			$pic=md5($pic).time().$extension;
 				 move_uploaded_file($_FILES["images"]["tmp_name"],"images/".$pic);
 				 
-				$query=mysqli_query($con, "INSERT INTO tblartproduct(Title,Dimension,Orientation,Size,Artist, ArtType,ArtMedium,SellingPricing,Description,Image,RefNum) 
+				$addPro=mysqli_query($con, "INSERT INTO tblartproduct(Title,Dimension,Orientation,Size,Artist, ArtType,ArtMedium,SellingPricing,Description,Image,RefNum) 
 				                   VALUES('$title','$dimension','$orientation','$size','$artist','$arttype','$artmed','$sprice','$description','$pic','$refno')");
-				if ($query) {
+				if ($addPro) {
 					echo "<script>alert('Art product details has been submitted.');</script>";
-					echo "<script>window.location.href ='add-art-product.php'</script>";
+					echo "<script>window.location.href ='addProduct.php'</script>";
 				}
 				else
 				{
@@ -54,7 +54,7 @@ $allowed_extensions = array(".jpg","jpeg",".png",".gif");
 
 <head>
   
-  <title>Add Art Product | Art Gallery Management System</title>
+  <title>Add Art Product | Gallery shop Management </title>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/bootstrap-theme.css" rel="stylesheet">
   <link href="css/elegant-icons-style.css" rel="stylesheet" />
@@ -67,15 +67,9 @@ $allowed_extensions = array(".jpg","jpeg",".png",".gif");
 </head>
 <body>
   <section id="container" class="">
-    <!--header start-->
-    <?php include_once('includes/header.php');?>
-    <!--header end-->
-
-    <!--sidebar start-->
+  
+   <?php include_once('includes/header.php');?>
    <?php include_once('includes/sidebar.php');?>
-    <!--sidebar end-->
-
-    <!--main content start-->
     <section id="main-content" style="color:#000">
       <section class="wrapper">
         <div class="row">
@@ -147,11 +141,11 @@ $allowed_extensions = array(".jpg","jpeg",".png",".gif");
 											<div class="col-sm-10">
 												  <select class="form-control m-bot15" name="artist" id="artist">
 														<option value="">Choose Artist</option>
-															<?php $query=mysqli_query($con,"select * from tblartist");
-																  while($row=mysqli_fetch_array($query))
+															<?php $qArtist=mysqli_query($con,"SELECT * FROM tblartist");
+																  while($infoset=mysqli_fetch_array($qArtist))
 																  {
 																  ?>    
-														<option value="<?php echo $row['ID'];?>"><?php echo $row['Name'];?></option>
+														<option value="<?php echo $infoset['ID'];?>"><?php echo $infoset['Name'];?></option>
 																 <?php } ?> 
 												   </select>
 											</div>
@@ -162,11 +156,11 @@ $allowed_extensions = array(".jpg","jpeg",".png",".gif");
 										<div class="col-sm-10">
 												<select class="form-control m-bot15" name="arttype" id="arttype">
 													   <option value="">Choose Art Type</option>
-															<?php $query=mysqli_query($con,"select * from tblarttype");
-																  while($row=mysqli_fetch_array($query))
+															<?php $qAtt=mysqli_query($con,"SELECT * FROM tblarttype");
+																  while($resultset=mysqli_fetch_array($qAtt))
 																  {
 															?>    
-													  <option value="<?php echo $row['ID'];?>"><?php echo $row['ArtType'];?></option>
+													  <option value="<?php echo $resultset['ID'];?>"><?php echo $resultset['ArtType'];?></option>
 														   <?php } ?> 
 											   </select>
 										</div>
@@ -177,11 +171,11 @@ $allowed_extensions = array(".jpg","jpeg",".png",".gif");
 									<div class="col-sm-10">
 											<select class="form-control m-bot15" name="artmed" id="artmed">
 												  <option value="">Choose Art Medium</option>
-												  <?php $query=mysqli_query($con,"select * from tblartmedium");
-														while($row=mysqli_fetch_array($query))
+												  <?php $qArtMd=mysqli_query($con,"SELECT * FROM tblartmedium");
+														while($data=mysqli_fetch_array($qArtMd))
 														{
 												   ?>    
-												<option value="<?php echo $row['ID'];?>"><?php echo $row['ArtMedium'];?></option>
+												<option value="<?php echo $data['ID'];?>"><?php echo $data['ArtMedium'];?></option>
 												  <?php } ?> 
 										  </select>
 									</div>
@@ -210,27 +204,16 @@ $allowed_extensions = array(".jpg","jpeg",".png",".gif");
     </section>
  <?php include_once('includes/footer.php');?>
   </section>
-  <!-- container section end -->
-  <!-- javascripts -->
+ 
   <script src="js/jquery.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <!-- nice scroll -->
+  <script src="js/bootstrap.min.js"></script> 
   <script src="js/jquery.scrollTo.min.js"></script>
   <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-
-  <!-- jquery ui -->
   <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
-
-  <!--custom checkbox & radio-->
   <script type="text/javascript" src="js/ga.js"></script>
-  <!--custom switch-->
   <script src="js/bootstrap-switch.js"></script>
-  <!--custom tagsinput-->
   <script src="js/jquery.tagsinput.js"></script>
-
-  <!-- colorpicker -->
-
-  <!-- bootstrap-wysiwyg -->
+  <!-- bootstrap-->
   <script src="js/jquery.hotkeys.js"></script>
   <script src="js/bootstrap-wysiwyg.js"></script>
   <script src="js/bootstrap-wysiwyg-custom.js"></script>
@@ -238,14 +221,9 @@ $allowed_extensions = array(".jpg","jpeg",".png",".gif");
   <script src="js/bootstrap-colorpicker.js"></script>
   <script src="js/daterangepicker.js"></script>
   <script src="js/bootstrap-datepicker.js"></script>
-  <!-- ck editor -->
   <script type="text/javascript" src="js/ckeditor.js"></script>
-  <!-- custom form component script for this page-->
   <script src="js/form-component.js"></script>
-  <!-- custome script for all page -->
   <script src="js/scripts.js"></script>
-
-
 </body>
 
 </html>

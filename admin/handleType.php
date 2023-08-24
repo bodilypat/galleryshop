@@ -1,53 +1,35 @@
 <?php
-session_start();
-error_reporting(0);
-include('includes/dbconnection.php');
-if (strlen($_SESSION['agmsaid']==0)) {
-  header('location:logout.php');
-  } else{
-
-if(isset($_GET['delid']))
-{
-$rid=intval($_GET['delid']);
-$sql=mysqli_query($con,"delete from tblarttype where ID='$rid'");
- echo "<script>alert('Data deleted');</script>"; 
-  echo "<script>window.location.href = 'manage-art-type.php'</script>";     
-
-
+  session_start();
+  error_reporting(0);
+  include('includes/dbconnection.php');
+  if (strlen($_SESSION['agmsaid']==0)) {
+      header('location:logout.php');
+      } else{
+    if(isset($_GET['delid']))
+    {
+        $did=intval($_GET['delid']);
+      $delAtt=mysqli_query($con,"DELETE FROM tblarttype WHERE ID='$did'");
+      echo "<script>alert('Data deleted');</script>"; 
+      echo "<script>window.location.href = 'handleArttype.php'</script>";     
 }
+?>
 
-  ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
   <title>Manage Art Type| Art Gallery Management System</title>
-
-  <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- bootstrap theme -->
   <link href="css/bootstrap-theme.css" rel="stylesheet">
-  <!--external css-->
-  <!-- font icon -->
   <link href="css/elegant-icons-style.css" rel="stylesheet" />
   <link href="css/font-awesome.min.css" rel="stylesheet" />
-  <!-- Custom styles -->
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet" />
-
 </head>
-
 <body>
-  <!-- container section start -->
   <section id="container" class="">
-    <!--header start-->
     <?php include_once('includes/header.php');?>
-    <!--header end-->
-
-    <!--sidebar start-->
     <?php include_once('includes/sidebar.php');?>
-
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
@@ -65,59 +47,47 @@ $sql=mysqli_query($con,"delete from tblarttype where ID='$rid'");
         <div class="row">
           <div class="col-sm-12">
             <section class="panel">
-              <header class="panel-heading">
-                Manage Art Type
-              </header>
+              <header class="panel-heading">Manage Art Type</header>       
               <table class="table">
-					<thead>
-                                        
-                           <tr>
-								<th>S.NO</th>
-								<th>Type of Art</th>
-								<th>Creation Date</th>
-								<th>Action</th>
-							</tr>
-                                       
-                      </thead>
+					    <thead>
+                       <tr>
+                            <th>S.NO</th>
+                            <th>Type of Art</th>
+                            <th>Creation Date</th>
+                            <th>Action</th>
+							        </tr>                 
+              </thead>
 				   <?php
-						$ret=mysqli_query($con,"select *from  tblarttype");
-						$cnt=1;
-						while ($row=mysqli_fetch_array($ret))
-						{
-					?>
-					<tr>
-						<td><?php echo $cnt;?></td>
-						<td><?php  echo $row['ArtType'];?></td>
-						<td><?php  echo $row['CreationDate'];?></td>
-						<td><a href="editArtType.php?editid=<?php echo $row['ID'];?>" class="btn btn-success">Edit</a> || <a href="manageType.php?delid=<?php echo $row['ID'];?>" class="btn btn-danger">Delete</a></td>
-					</tr>
+						    $qAtt=mysqli_query($con,"SELECT * FROM tblarttype");
+						    $count=1;
+					    	while ($data=mysqli_fetch_array($qAtt))
+					    	{
+					  ?>  
+					            <tr>
+						                <td><?php  echo $count;?></td>
+						                <td><?php  echo $data['ArtType'];?></td>
+						                <td><?php  echo $data['CreationDate'];?></td>
+						                <td><a href="editArtType.php?editid=<?php echo $data['ID'];?>" class="btn btn-success">Edit</a> || <a href="handleArttype.php?delid=<?php echo $data['ID'];?>" class="btn btn-danger">Delete</a></td>
+					            </tr>
 					<?php 
-							$cnt=$cnt+1;
+							  $count=$count+1;
 							}?>
 				  </table>
-            </section>
-          </div>
-       
-        </div>
-       
+      </section>
+          </div>       
+        </div>    
         <!-- page end-->
       </section>
-    </section>
-    <!--main content end-->
+	</section>
+		<!--main content end-->
     <?php include_once('includes/footer.php');?>
   </section>
-  <!-- container section end -->
-  <!-- javascripts -->
+  
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <!-- nicescroll -->
   <script src="js/jquery.scrollTo.min.js"></script>
   <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-  <!--custome script for all page-->
   <script src="js/scripts.js"></script>
-
-
 </body>
-
 </html>
 <?php }  ?>

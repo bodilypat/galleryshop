@@ -59,7 +59,6 @@ if(isset($_POST['send']))
             </ul>
          </div>
       </div>
-      <!-- //short-->
       <!--contact -->
       <section class="contact py-lg-4 py-md-3 py-sm-3 py-3">
 			 <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
@@ -84,9 +83,7 @@ if(isset($_POST['send']))
 						   </form>
 					</div>
 			 </div>
-         <!--//contact-map -->
       </section>
-      <!--subscribe-address-->
 	  <?php include_once('includes/footer.php');?>
       <script src='js/jquery-2.2.3.min.js'></script>
       <script src="js/minicart.js"></script>
@@ -103,7 +100,6 @@ if(isset($_POST['send']))
          	}
          });
       </script>
-      <!-- start-smoth-scrolling -->
       <script src="js/move-top.js"></script>
       <script src="js/easing.js"></script>
       <script>
@@ -116,28 +112,20 @@ if(isset($_POST['send']))
          	});
          });
       </script>
-      <!-- start-smoth-scrolling -->
-      <!-- here stars scrolling icon -->
       <script>
          $(document).ready(function () {
          
          	var defaults = {
-         		containerID: 'toTop', // fading element id
-         		containerHoverID: 'toTopHover', // fading element hover id
+         		containerID: 'toTop', 
+         		containerHoverID: 'toTopHover', 
          		scrollSpeed: 1200,
          		easingType: 'linear'
          	};
-         
-         
          	$().UItoTop({
          		easingType: 'easeOutQuart'
          	});
-         
          });
       </script>
-      <!-- //here ends scrolling icon -->
-      <!--bootstrap working-->
       <script src="js/bootstrap.min.js"></script>
-      <!-- //bootstrap working-->      <!-- //OnScroll-Number-Increase-JavaScript -->
    </body>
 </html>

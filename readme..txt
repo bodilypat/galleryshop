@@ -1,4 +1,3 @@
-How to run the Art Gallery Management System (agms) Project
 1. Download the zip file
 
 2. Extract the file and copy agms folder
@@ -7,11 +6,11 @@ How to run the Art Gallery Management System (agms) Project
 
 4.Open PHPMyAdmin (http://localhost/phpmyadmin)
 
-5. Create a database with the name agmsdb
+5. Create a database with the name artgallery
 
-6. Import agmsdb.sql file(given inside the zip package in the SQL file folder)
+6. Import artgallery.sql file(given inside the zip package in the SQL file folder)
 
-7. Run the script http://localhost/gallery
+7. Run the script http://localhost/artgallery
 
 Credential for Admin panel :
 

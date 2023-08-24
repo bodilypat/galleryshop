@@ -1,52 +1,41 @@
 <?php
-session_start();
-error_reporting(0);
-include('includes/dbconnection.php');
-if (strlen($_SESSION['agmsaid']==0)) {
-  header('location:logout.php');
-  }
-  else{
+  session_start();
+  error_reporting(0);
+  include('includes/dbconnection.php');
+      if (strlen($_SESSION['agmsaid']==0)) {
+          header('location:logout.php');
+      }
+      else{
 
-	if(isset($_POST['submit']))
-	  {
-	   
-		$arttype=$_POST['arttype'];
-		
-		$query=mysqli_query($con, "insert into tblarttype(ArtType) value('$arttype')");
-		if ($query) {
-			echo "<script>alert('Artist type has been added.');</script>";
-			echo "<script>window.location.href ='manage-art-type.php'</script>";
-		}
-		else
-		{  
-			echo "<script>alert('Something Went Wrong. Please try again.');</script>";
-		}
+        if(isset($_POST['submit']))
+          {
+          
+          $arttype=$_POST['arttype'];
+          
+          $addAtt=mysqli_query($con, "INSERT INTO tblarttype(ArtType) VALUES('$arttype')");
+          if ($addAtt) {
+            echo "<script>alert('Artist type has been added.');</script>";
+            echo "<script>window.location.href ='handleArttype.php'</script>";
+          }
+          else
+          {  
+            echo "<script>alert('Something Went Wrong. Please try again.');</script>";
+          }
 	}
   ?>
-  
   
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>Add Art Type | Art Gallery Management System</title>
-
-  <!-- Bootstrap CSS -->
+  <title>Add Art Type | Gallery Shop Management </title>
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- bootstrap theme -->
   <link href="css/bootstrap-theme.css" rel="stylesheet">
-  <!--external css-->
-  <!-- font icon -->
   <link href="css/elegant-icons-style.css" rel="stylesheet" />
   <link href="css/font-awesome.min.css" rel="stylesheet" />
   <link href="css/daterangepicker.css" rel="stylesheet" />
   <link href="css/bootstrap-datepicker.css" rel="stylesheet" />
   <link href="css/bootstrap-colorpicker.css" rel="stylesheet" />
-  <!-- date picker -->
-
-  <!-- color picker -->
-
-  <!-- Custom styles -->
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet" />
 
@@ -54,17 +43,11 @@ if (strlen($_SESSION['agmsaid']==0)) {
 
 <body>
 
-  <!-- container section start -->
+  
   <section id="container" class="">
-    <!--header start-->
-    <?php include_once('includes/header.php');?>
-    <!--header end-->
-
-    <!--sidebar start-->
+   
+   <?php include_once('includes/header.php');?>  
    <?php include_once('includes/sidebar.php');?>
-    <!--sidebar end-->
-
-    <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
         <div class="row">
@@ -102,33 +85,19 @@ if (strlen($_SESSION['agmsaid']==0)) {
             
           </div>
         </div>
-        <!-- Basic Forms & Horizontal Forms-->   
-        <!-- page end-->
+        
       </section>
     </section>
  <?php include_once('includes/footer.php');?>
-  </section>
-  <!-- container section end -->
-  <!-- javascripts -->
+  </section> 
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <!-- nice scroll -->
   <script src="js/jquery.scrollTo.min.js"></script>
   <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-
-  <!-- jquery ui -->
-  <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
-
-  <!--custom checkbox & radio-->
+  <script src="js/jquery-ui-1.9.2.custom.min.js"></script> 
   <script type="text/javascript" src="js/ga.js"></script>
-  <!--custom switch-->
   <script src="js/bootstrap-switch.js"></script>
-  <!--custom tagsinput-->
   <script src="js/jquery.tagsinput.js"></script>
-
-  <!-- colorpicker -->
-
-  <!-- bootstrap-wysiwyg -->
   <script src="js/jquery.hotkeys.js"></script>
   <script src="js/bootstrap-wysiwyg.js"></script>
   <script src="js/bootstrap-wysiwyg-custom.js"></script>
@@ -136,15 +105,9 @@ if (strlen($_SESSION['agmsaid']==0)) {
   <script src="js/bootstrap-colorpicker.js"></script>
   <script src="js/daterangepicker.js"></script>
   <script src="js/bootstrap-datepicker.js"></script>
-  <!-- ck editor -->
   <script type="text/javascript" src="assets/ckeditor/ckeditor.js"></script>
-  <!-- custom form component script for this page-->
   <script src="js/form-component.js"></script>
-  <!-- custome script for all page -->
   <script src="js/scripts.js"></script>
-
-
 </body>
-
 </html>
 <?php  } ?>

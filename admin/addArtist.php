@@ -9,11 +9,11 @@ if (strlen($_SESSION['agmsaid']==0)) {
 
 	if(isset($_POST['submit']))
 	{
-		$name=$_POST['name'];
-		$mobnum=$_POST['mobnum'];
-		$email=$_POST['email'];
-		$edudetails=$_POST['edudetails'];
-		$awarddetails=$_POST['awarddetails'];
+		$artName=$_POST['name'];
+		$artMobnum=$_POST['mobnum'];
+		$artEmail=$_POST['email'];
+		$artEducate=$_POST['edudetails'];
+		$artAward=$_POST['awarddetails'];
 		$img=$_FILES["images"]["name"];
 		$extension = substr($img,strlen($img)-4,strlen($img));
 		
@@ -28,12 +28,12 @@ if (strlen($_SESSION['agmsaid']==0)) {
 		{
 			$proimg=md5($img).$extension;
 			move_uploaded_file($_FILES["images"]["tmp_name"],"images/".$proimg);
-			$query=mysqli_query($con, "insert into tblartist(Name,MobileNumber,Email,Education,Award,Profilepic) 
-									   value('$name','$mobnum','$email','$edudetails','$awarddetails','$proimg')");
-			if ($query) 
+			$addArt=mysqli_query($con, "INSERT INTO tblartist(Name, MobileNumber, Email, Education, Award,Profilepic) 
+									   VALUES ('$artName','$artMobnum','$artEmail','$artEducate','$artAward','$proimg')");
+			if ($addArt) 
 			{
 				echo "<script>alert('Artist details has been added.');</script>";
-				echo "<script>window.location.href ='manage-artist.php'</script>";
+				echo "<script>window.location.href ='handleArtist.php'</script>";
 			}
 			else
 			{    
@@ -47,9 +47,8 @@ if (strlen($_SESSION['agmsaid']==0)) {
 <html lang="en">
 
 <head>
-  <title>Add Artist | Shop Gallery Management System</title>
+  <title>Add Artist | Gallery Shop Management </title>
 
-  <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/bootstrap-theme.css" rel="stylesheet">
   <link href="css/elegant-icons-style.css" rel="stylesheet" />
@@ -64,10 +63,11 @@ if (strlen($_SESSION['agmsaid']==0)) {
 
 <body>
 
-  <!-- container section start -->
+
   <section id="container" class="">
-    <?php include_once('includes/header.php');?>
-    <?php include_once('includes/sidebar.php');?>
+   
+   <?php include_once('includes/header.php');?>
+   <?php include_once('includes/sidebar.php');?>
     <section id="main-content">
       <section class="wrapper">
         <div class="row">
@@ -87,7 +87,8 @@ if (strlen($_SESSION['agmsaid']==0)) {
              Add Artist Detail
               </header>
               <div class="panel-body">
-                <form class="form-horizontal " method="post" action="" enctype="multipart/form-data"> 
+                <form class="form-horizontal " method="post" action="" enctype="multipart/form-data">
+                  
                   <div class="form-group">
                     <label class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-10">
@@ -126,12 +127,11 @@ if (strlen($_SESSION['agmsaid']==0)) {
             
           </div>
         </div>
-        <!-- page end-->
       </section>
     </section>
  <?php include_once('includes/footer.php');?>
   </section>
-
+  
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/jquery.scrollTo.min.js"></script>
@@ -150,6 +150,7 @@ if (strlen($_SESSION['agmsaid']==0)) {
   <script src="js/ckeditor.js" type="text/javascript" ></script>
   <script src="js/form-component.js"></script>
   <script src="js/scripts.js"></script>
+
 </body>
 
 </html>
